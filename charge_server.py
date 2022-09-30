@@ -11,11 +11,11 @@ from spyne.protocol.soap.soap11 import Soap11
 
 class AutonomyService(ServiceBase):
 
-    @srpc(UnsignedInteger, UnsignedInteger, _returns=UnsignedInteger)
-    def travel_time(time: int, charging_time: int):
+    @srpc(UnsignedInteger, UnsignedInteger, UnsignedInteger, _returns=UnsignedInteger)
+    def travel_time(number_stop:int, time: int, charging_time: int):
         # time in second
         # charging_time in second
-        return time + charging_time
+        return time + charging_time * number_stop
 
 
 if __name__ == '__main__':
