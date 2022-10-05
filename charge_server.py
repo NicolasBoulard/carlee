@@ -1,9 +1,7 @@
 from spyne.application import Application
 from spyne.decorator import srpc
 from spyne.service import ServiceBase
-from spyne.model.complex import Iterable
-from spyne.model.primitive import Integer, UnsignedInteger
-from spyne.model.primitive import String
+from spyne.model.primitive import UnsignedInteger
 from spyne.server.wsgi import WsgiApplication
 from wsgiref.simple_server import make_server
 from spyne.protocol.soap.soap11 import Soap11
@@ -19,9 +17,6 @@ class AutonomyService(ServiceBase):
 
 
 if __name__ == '__main__':
-    # logging.basicConfig(level=logging.DEBUG)
-    # logging.getLogger('spyne.protocol.xml').setLevel(logging.DEBUG)
-
     app = Application([AutonomyService], 'carlee.charge.server.http',
                       in_protocol=Soap11(validator='lxml'),
                       out_protocol=Soap11(),
