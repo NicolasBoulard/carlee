@@ -16,17 +16,16 @@ class AutonomyService(ServiceBase):
         return time + charging_time * number_stop
 
 
-if __name__ == '__main__':
-    app = Application([AutonomyService], 'carlee.charge.server.http',
-                      in_protocol=Soap11(validator='lxml'),
-                      out_protocol=Soap11(),
-                      )
+app = Application([AutonomyService], 'carlee.charge.server.soap',
+                  in_protocol=Soap11(validator='lxml'),
+                  out_protocol=Soap11(),
+                  )
 
-    wsgi_app = WsgiApplication(app)
+app = WsgiApplication(app)
 
-    server = make_server('127.0.0.1', 8000, wsgi_app)
+#server = make_server('127.0.0.1', 8000, wsgi_app)
 
-    print("listening to http://127.0.0.1:8000")
-    print("wsdl is at: http://localhost:8000/?wsdl")
+print("listening to http://127.0.0.1:8000")
+print("wsdl is at: http://localhost:8000/?wsdl")
 
-    server.serve_forever()
+#server.serve_forever()
